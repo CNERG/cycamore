@@ -307,6 +307,12 @@ class Enrichment : public cyclus::Facility {
   double tails_assay;
 
   #pragma cyclus var {							\
+    "default": 0.00, "tooltip": "tails assay error",				\
+    "uilabel": "Tails Assay Error",                             \
+  }
+  double tails_assay_uncertainty;
+
+  #pragma cyclus var {							\
     "default": 0, "tooltip": "initial uranium reserves (kg)",		\
     "uilabel": "Initial Feed Inventory",				\
     "doc": "amount of natural uranium stored at the enrichment "	\
