@@ -100,7 +100,11 @@ class Separations : public cyclus::Facility {
   virtual cyclus::Inventories SnapshotInv();
   virtual void InitInv(cyclus::Inventories& inv);
 
- private:
+
+
+  private:
+  double get_efficiency_corrected(double efficiency);
+
   #pragma cyclus var { \
     "doc": "Ordered list of commodities on which to request feed material to " \
            "separate. Order only matters for matching up with feed commodity " \
