@@ -2,6 +2,7 @@
 #define CYCAMORE_SRC_ENRICHMENT_H_
 
 #include <string>
+#include <random>
 
 #include "cyclus.h"
 #include "cycamore_version.h"
@@ -257,7 +258,7 @@ class Enrichment : public cyclus::Facility {
   ///  @param req the requested material being responded to
   cyclus::Material::Ptr Offer_(cyclus::Material::Ptr req);
 
-  cyclus::Material::Ptr Enrich_(cyclus::Material::Ptr mat, double qty);
+  cyclus::Material::Ptr Enrich_(cyclus::Material::Ptr mat, double qty, double var_assay = -1);
 
   ///  @brief calculates the feed assay based on the unenriched inventory
   double FeedAssay();
@@ -375,6 +376,8 @@ class Enrichment : public cyclus::Facility {
   cyclus::toolkit::ResBuf<cyclus::Material> inventory;  // natural u
   #pragma cyclus var {}
   cyclus::toolkit::ResBuf<cyclus::Material> tails;  // depleted u
+
+  std::map<cyclus::Request<cyclus::Material>*, double> reccord_tail_assay;
 
   // used to total intra-timestep swu and natu usage for meeting requests -
   // these help enable time series generation.
